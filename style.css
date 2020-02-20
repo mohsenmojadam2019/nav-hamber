@@ -1,0 +1,111 @@
+body {
+  background: #3C3B3D;
+}
+body #app {
+  --navigation-width:6rem;
+  --navigation-height:6rem;
+  min-height: 100vh;
+}
+body #app nav {
+  position: absolute;
+  display: grid;
+  grid-template-columns: var(--navigation-width) auto;
+  grid-template-rows: var(--navigation-height) auto;
+  grid-template-areas: "side top" "side .";
+}
+body #app nav > div {
+  display: flex;
+  margin: .5rem;
+}
+body #app nav > div a {
+  display: block;
+  width: calc(var(--navigation-width) - 2rem);
+  height: calc(var(--navigation-height) - 2rem);
+  margin: .5rem;
+  border-radius: .5rem;
+  background: #F5F7FA;
+}
+body #app nav > div a:hover, body #app nav > div a:focus {
+  background: #E6E9ED;
+}
+body #app nav .side {
+  flex-direction: column;
+  grid-area: side;
+}
+body #app nav .top {
+  grid-area: top;
+  margin-left: -.5rem;
+}
+body #app #content {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0rem;
+  left: 0rem;
+  right: 0;
+  bottom: 0;
+  border-top-left-radius: 0rem;
+  background: white;
+  box-shadow: 0 0 2rem -1rem rgba(0, 0, 0, 0.5);
+  transition: 1s cubic-bezier(0.5, 0, 0, 1) -0.1s;
+}
+body #app #content header {
+  display: flex;
+  align-items: center;
+  height: 5rem;
+}
+body #app #content header button.opennav {
+  position: relative;
+  height: 4rem;
+  width: 4rem;
+  margin: .5rem;
+  border: none;
+  border-radius: 1rem;
+  background: #323133;
+  cursor: pointer;
+}
+body #app #content header button.opennav .icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2.5rem;
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+body #app #content header button.opennav .icon, body #app #content header button.opennav .icon:before, body #app #content header button.opennav .icon:after {
+  height: .25rem;
+  background: white;
+  border-radius: 1rem;
+  transition: 1s cubic-bezier(0.5, 0, 0, 1) -0.1s;
+}
+body #app #content header button.opennav .icon:before, body #app #content header button.opennav .icon:after {
+  content: '';
+  position: absolute;
+  left: 0rem;
+  width: 1.5rem;
+}
+body #app #content header button.opennav .icon:before {
+  top: .9rem;
+  transform-origin: 1rem -.75rem;
+}
+body #app #content header button.opennav .icon:after {
+  bottom: .9rem;
+  transform-origin: 1rem 1rem;
+}
+body #app #content.open, body #app nav:focus-within ~ #content {
+  top: var(--navigation-height);
+  left: var(--navigation-width);
+  border-top-left-radius: 1.5rem;
+}
+body #app #content.open button.opennav .icon, body #app nav:focus-within ~ #content button.opennav .icon {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+body #app #content.open button.opennav .icon:before, body #app #content.open button.opennav .icon:after, body #app nav:focus-within ~ #content button.opennav .icon:before, body #app nav:focus-within ~ #content button.opennav .icon:after {
+  left: .25rem;
+}
+body #app #content.open button.opennav .icon:before, body #app nav:focus-within ~ #content button.opennav .icon:before {
+  transform: rotate(45deg);
+}
+body #app #content.open button.opennav .icon:after, body #app nav:focus-within ~ #content button.opennav .icon:after {
+  transform: rotate(-45deg);
+}
